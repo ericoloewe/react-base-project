@@ -1,0 +1,40 @@
+{
+  "name": "about-me",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "npm run download && npm run dev",
+    "download": "npm install",
+    "dev": "start webpack -w && nodemon index.js"
+  },
+  "dependencies": {
+    "body-parser": "~1.18.2",
+    "bootstrap": "^4.0.0-beta.3",
+    "cookie-parser": "~1.4.3",
+    "express": "~4.15.5",
+    "morgan": "~1.9.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-engine": "^4.4.0",
+    "redux": "^3.7.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "clean-webpack-plugin": "^0.1.17",
+    "css-loader": "^0.28.7",
+    "debug": "^3.1.0",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.5",
+    "json-loader": "^0.5.7",
+    "node-sass": "^4.6.1",
+    "nodemon": "^1.14.11",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.19.0",
+    "uglifyjs-webpack-plugin": "^1.0.1",
+    "webpack": "^3.8.1",
+    "webpack-merge": "^4.1.1"
+  }
+}
