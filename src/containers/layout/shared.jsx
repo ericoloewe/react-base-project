@@ -32,9 +32,9 @@ export class LayoutContainer extends React.Component {
     let styles = [];
 
     if (EnvConfig.isPrd()) {
-      styles.push(<link rel="stylesheet" href="./styles/vendor-styles.css" />);
-      styles.push(<link rel="stylesheet" href="./styles/main-styles.css" />);
-      styles.push(<link rel="stylesheet" href="./styles/sandbox-styles.css" />);
+      styles.push(<link key={1} rel="stylesheet" href="./styles/vendor-styles.css" />);
+      styles.push(<link key={2} rel="stylesheet" href="./styles/main-styles.css" />);
+      styles.push(<link key={3} rel="stylesheet" href="./styles/sandbox-styles.css" />);
     }
 
     return (
@@ -46,13 +46,13 @@ export class LayoutContainer extends React.Component {
 
   renderScripts() {
     let scripts = [
-      <script src='./scripts/components.bundle.js'></script>
+      <script key={1} src='./scripts/components.bundle.js'></script>
     ];
 
     if (EnvConfig.isDev()) {
-      scripts.push(<script src='./scripts/vendor-styles.bundle.js'></script>);
-      scripts.push(<script src='./scripts/main-styles.bundle.js'></script>);
-      scripts.push(<script src='./scripts/sandbox-styles.bundle.js'></script>);
+      scripts.push(<script key={2} src='./scripts/vendor-styles.bundle.js'></script>);
+      scripts.push(<script key={3} src='./scripts/main-styles.bundle.js'></script>);
+      scripts.push(<script key={4} src='./scripts/sandbox-styles.bundle.js'></script>);
     }
 
     return (
