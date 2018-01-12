@@ -4,7 +4,7 @@
   "scripts": {
     "start": "npm run download && npm run dev",
     "download": "npm install",
-    "dev": "start webpack -w && nodemon index.js"
+    "dev": "start webpack -w && nodemon --inspect-brk=41188 index.js"
   },
   "dependencies": {
     "body-parser": "~1.18.2",
