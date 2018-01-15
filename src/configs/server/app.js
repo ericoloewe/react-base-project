@@ -7,8 +7,7 @@ import path from 'path';
 import logger from 'morgan';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
-import { RouteConfiguration } from "./index";
-import { EngineConfiguration } from "./render/engine";
+import { RouteConfiguration, EngineConfiguration } from "./index";
 
 export class App {
   static getInstance() {

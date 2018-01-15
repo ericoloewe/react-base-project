@@ -2,7 +2,7 @@
  * Layout container
  */
 import React from 'react';
-import { EnvConfig } from "../../configs";
+import { EnvConfig, Config } from "../../configs";
 
 export class LayoutContainer extends React.Component {
   render() {
@@ -22,7 +22,7 @@ export class LayoutContainer extends React.Component {
       <head>
         <meta charSet='utf-8' />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <title>About me</title>
+        <title>{Config.getSafe(c => c.GENERAL.APP_TITLE)}</title> 
         {this.renderStyles()}
       </head>
     );
@@ -32,32 +32,30 @@ export class LayoutContainer extends React.Component {
     let styles = [];
 
     if (EnvConfig.isPrd()) {
-      styles.push(<link key={1} rel="stylesheet" href="./styles/vendor-styles.css" />);
-      styles.push(<link key={2} rel="stylesheet" href="./styles/main-styles.css" />);
-      styles.push(<link key={3} rel="stylesheet" href="./styles/sandbox-styles.css" />);
+      styles.push("vendor-styles");
+      styles.push("main-styles");
+      styles.push("sandbox-styles");
     }
 
     return (
       <span id="styles">
-        {styles}
+        {styles.map((s, i) => <link key={i} rel="stylesheet" href={`./styles/${s}.css`} />)}
       </span>
     );
   }
 
   renderScripts() {
-    let scripts = [
-      <script key={1} src='./scripts/components.bundle.js'></script>
-    ];
+    let scripts = ["components"];
 
     if (EnvConfig.isDev()) {
-      scripts.push(<script key={2} src='./scripts/vendor-styles.bundle.js'></script>);
-      scripts.push(<script key={3} src='./scripts/main-styles.bundle.js'></script>);
-      scripts.push(<script key={4} src='./scripts/sandbox-styles.bundle.js'></script>);
+      scripts.push("vendor-styles");
+      scripts.push("main-styles");
+      scripts.push("sandbox-styles");
     }
 
     return (
       <span id="scripts">
-        {scripts}
+        {scripts.map((s, i) => <script key={i} src={`./scripts/${s}.bundle.js`}></script>)}
       </span>
     )
   }

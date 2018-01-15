@@ -2,22 +2,21 @@
  * Server enviroment configuration
  */
 
-export class EnviromentConfiguration {
+export class ServerEnviromentConfiguration {
   static isDev() {
-    const { App } = require("../index");
-    let env = null;
-    
-    if (App != null && App.getApp() != null) {
-      env = App.getApp().get("env");
-    } else {
-      env = process.env.NODE_ENV;
-    }
+    let env = ServerEnviromentConfiguration._getCurrentEnv();
 
     return env == null
       || env == "development";
   }
 
   static isPrd() {
+    let env = ServerEnviromentConfiguration._getCurrentEnv();
+
+    return env == "production";
+  }
+
+  static _getCurrentEnv() {
     const { App } = require("../index");
     let env = null;
 
@@ -27,8 +26,8 @@ export class EnviromentConfiguration {
       env = process.env.NODE_ENV;
     }
 
-    return env == "production";
+    return env;
   }
 }
 
-export { EnviromentConfiguration as EnvConfig };
+export { ServerEnviromentConfiguration as ServerEnvConfig };

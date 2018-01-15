@@ -2,4 +2,4 @@
  * Client configuration
  */
 
-export { ClientEnvConfig } from "./enviroment";
+export { ClientEnvConfig, ClientEnviromentConfiguration } from "./enviroment";

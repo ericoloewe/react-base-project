@@ -2,7 +2,7 @@
  * Engine configuration
  */
 import ReactEngine from 'react-engine';
-import { EnvConfig } from "../../index";
+import { ServerEnvConfig } from "../../index";
 
 export class RenderEngineConfiguration {
   static getInstance() {
@@ -29,7 +29,7 @@ export class RenderEngineConfiguration {
   }
 
   logStatistics(stats) {
-    if (EnvConfig.isDev()) {
+    if (ServerEnvConfig.isDev()) {
       // console.log(stats);
     }
   }
