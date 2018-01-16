@@ -8,7 +8,7 @@ export class LayoutContainer extends React.Component {
   render() {
     return (
       <html>
-        {this.renderHeader()}
+        {this.renderHead()}
         <body>
           {this.props.children}
           {this.renderScripts()}
@@ -17,7 +17,7 @@ export class LayoutContainer extends React.Component {
     );
   }
 
-  renderHeader() {
+  renderHead() {
     return (
       <head>
         <meta charSet='utf-8' />

@@ -8,8 +8,10 @@ class HomeContainer extends React.Component {
   render() {
     return (
       <LayoutContainer>
-        <h1>Welcome {this.props.name}</h1>
-        <div data-js="word"></div>
+        <div className={"container"}>
+          <h1>Welcome {this.props.name}</h1>
+          <div data-js="word"></div>
+        </div>
       </LayoutContainer>
     );
   }

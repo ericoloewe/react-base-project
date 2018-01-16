@@ -53,9 +53,7 @@ export class WordsContainer extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <div className={"container"}>
-          <WordList words={this.state.words} />
-        </div>
+        <WordList words={this.state.words} />
       </Provider>
     );
   }
