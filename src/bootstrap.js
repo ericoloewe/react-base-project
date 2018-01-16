@@ -2,13 +2,16 @@
  * Bootstrap file
  */
 
-import { App } from './configs/server/index';
+import { App, Logger } from './configs/index';
 import debug from 'debug';
 import http from 'http';
+
+let LOGGER;
 
 export class Bootstrap {
   static getInstance() {
     if (Bootstrap._instance == null) {
+      LOGGER = new Logger(Bootstrap);
       Bootstrap._instance = new Bootstrap();
     }
 
@@ -44,7 +47,7 @@ export class Bootstrap {
   startServer() {
     this.server = http.createServer(this.app);
 
-    this.server.listen(this.port, () => console.log(`Server listen port: ${this.port}`));
+    this.server.listen(this.port, () => LOGGER.log(`Server listen port: ${this.port}`));
 
     this.bindServerError();
     this.bindServerListening();
@@ -66,11 +69,11 @@ export class Bootstrap {
       // handle specific listen errors with friendly messages
       switch (error.code) {
         case 'EACCES':
-          console.error(bind + ' requires elevated privileges');
+          LOGGER.error(bind + ' requires elevated privileges');
           process.exit(1);
           break;
         case 'EADDRINUSE':
-          console.error(bind + ' is already in use');
+          LOGGER.error(bind + ' is already in use');
           process.exit(1);
           break;
         default:

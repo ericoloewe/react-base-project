@@ -1,7 +1,8 @@
 /**
  * Server enviroment configuration
  */
-import { ServerEnvConfig, ClientEnvConfig } from "../../index";
+import { ClientEnvConfig } from "../../../app/configs";
+import { ServerEnvConfig } from "../../../src/configs";
 
 export class EnviromentConfiguration {
   static isClientSide() {
@@ -19,8 +20,6 @@ export class EnviromentConfiguration {
   }
 
   static isPrd() {
-    const S = require("../../index");
-
     return EnviromentConfiguration.isClientSide()
       ? ClientEnvConfig.isPrd()
       : ServerEnvConfig.isPrd();

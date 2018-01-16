@@ -9,7 +9,7 @@ class HomeContainer extends React.Component {
     return (
       <LayoutContainer>
         <h1>Welcome {this.props.name}</h1>
-        <div data-js="word-list"></div>
+        <div data-js="word"></div>
       </LayoutContainer>
     );
   }

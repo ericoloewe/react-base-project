@@ -2,7 +2,7 @@
  * Constants
  */
 
-import { ObjectUtil } from "../../../utils";
+import { ObjectUtil } from "../../utils";
 
 export class Constants {
   static getLoadedInstance() {

@@ -2,7 +2,7 @@
  * Layout container
  */
 import React from 'react';
-import { EnvConfig, Config } from "../../configs";
+import { EnvConfig, Config } from "../../../shared/configs";
 
 export class LayoutContainer extends React.Component {
   render() {
@@ -45,7 +45,7 @@ export class LayoutContainer extends React.Component {
   }
 
   renderScripts() {
-    let scripts = ["components"];
+    let scripts = ["components", "containers"];
 
     if (EnvConfig.isDev()) {
       scripts.push("vendor-styles");

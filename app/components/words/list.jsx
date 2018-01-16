@@ -3,9 +3,7 @@
  */
 
 import React from "react";
-import ReactDOM from "react-dom";
 import { WordItem } from "./index";
-import { ClientEnvConfig } from "../../configs/client";
 import PropTypes from 'prop-types';
 
 export class WordList extends React.Component {
@@ -15,14 +13,6 @@ export class WordList extends React.Component {
 
   constructor(props) {
     super(props);
-  }
-
-  loadOnScreen(words = []) {
-    let elements = document.querySelectorAll(`[data-js="word-list"]`);
-
-    elements.forEach(el => {
-      ReactDOM.render(<WordList words={words} />, el);
-    });
   }
 
   render() {
@@ -47,8 +37,4 @@ export class WordList extends React.Component {
       </div>
     )
   }
-}
-
-if (ClientEnvConfig.isClientSide()) {
-  WordList.loadOnScreen();
 }

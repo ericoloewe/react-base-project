@@ -2,11 +2,14 @@
  * Engine configuration
  */
 import ReactEngine from 'react-engine';
-import { ServerEnvConfig } from "../../index";
+import { ServerEnvConfig, Logger } from "../../index";
+
+let LOGGER;
 
 export class RenderEngineConfiguration {
   static getInstance() {
     if (RenderEngineConfiguration._instance == null) {
+      LOGGER = new Logger(RenderEngineConfiguration);
       RenderEngineConfiguration._instance = new RenderEngineConfiguration();
     }
 
@@ -30,7 +33,7 @@ export class RenderEngineConfiguration {
 
   logStatistics(stats) {
     if (ServerEnvConfig.isDev()) {
-      // console.log(stats);
+      // LOGGER.log(stats);
     }
   }
 }

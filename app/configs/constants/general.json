@@ -1,0 +1,7 @@
+{
+  "APP_TITLE": "React base project",
+  "ENABLE_LOG": true,
+  "REDUX": {
+    "HARD_LOG_ENABLE": true
+  }
+}

@@ -7,11 +7,14 @@ import path from 'path';
 import logger from 'morgan';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
-import { RouteConfiguration, EngineConfiguration } from "./index";
+import { RouteConfiguration, EngineConfiguration, Logger } from "../index";
+
+let LOGGER;
 
 export class App {
   static getInstance() {
     if (App._instance == null) {
+      LOGGER = new Logger(App); 
       App._instance = new App();
     }
 
@@ -36,9 +39,6 @@ export class App {
     return _this.app;
   }
 
-  constructor() {
-  }
-
   startExpress() {
     this.app = new Express();
 
@@ -55,7 +55,7 @@ export class App {
 
   fetchErrorHandler() {
     this.app.use((err, req, res, next) => {
-      console.log(err, req, res, next);
+      LOGGER.log(err, req, res, next);
 
       if (res.headersSent) {
         return next(err);
@@ -84,7 +84,7 @@ export class App {
     var engine = EngineConfiguration.create();
 
     this.app.engine(".jsx", engine);
-    this.app.set('views', path.join(__dirname, '../../containers'));
+    this.app.set('views', path.join(__dirname, '../../pages'));
     this.app.set('view engine', 'jsx');
     this.app.set('view', require('react-engine/lib/expressView'));
   }
