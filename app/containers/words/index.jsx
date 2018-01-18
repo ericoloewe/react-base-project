@@ -5,13 +5,14 @@ import React from 'react';
 import ReactDOM from "react-dom";
 import { WordList } from '../../components/words/list';
 import { store } from '../../stores';
-import { Provider, connect } from 'react-redux';
 import { ClientEnvConfig } from "../../configs";
+import { WordAction } from '../../actions';
+import { ObjectUtil } from "../../../shared/utils";
 
 export class WordsContainer extends React.Component {
   static loadOnScreen() {
     let elements = document.querySelectorAll(`[data-js="word"]`);
-    
+
     elements.forEach(el => {
       ReactDOM.render(<WordsContainer />, el);
     });
@@ -29,37 +30,40 @@ export class WordsContainer extends React.Component {
   }
 
   componentWillMount() {
-    this.subscribeEvents();
-    // this.dispachEvents();
-  }
+    this.unsubscribe = store.subscribe(() => {      
+      this.setState(() => this.reduceState(store.getState()));
+    });
 
+    store.dispatch(WordAction.fetch());
+  }
 
   componentWillUnmount() {
-    this.unsubscribeEvents();
-  }
-
-  subscribeEvents() {
-    this.unsubscribe = store.subscribe(() => {
-      this.setState(store.getState().word);
-    });
-  }
-
-  unsubscribeEvents() {
-    if (typeof (this.unsubscribe) === "function") {
+    if (ObjectUtil.isFunction(this.unsubscribe)) {
       this.unsubscribe();
     }
   }
 
+  reduceState({ word: { words, isFetching } }) {
+    return {
+      words,
+      isFetching
+    };
+  }
+
   render() {
-    return (
-      <Provider store={store}>
-        <WordList words={this.state.words} />
-      </Provider>
-    );
+    return (this.renderWordList(this.state.words));
+  }
+
+  renderWordList(words) {
+    let component = <WordList words={words} />;
+
+    if (this.state.isFetching) {
+      component = <h5>Loading</h5>;
+    }
+
+    return component;
   }
 }
-
-WordsContainer = connect()(WordsContainer);
 
 if (ClientEnvConfig.isClientSide()) {
   WordsContainer.loadOnScreen();
