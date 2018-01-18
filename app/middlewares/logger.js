@@ -5,7 +5,7 @@
 import { Logger, Config } from "../configs";
 
 const LOGGER = new Logger("logger");
-const IS_HARD_LOG_ENABLED = Config.getSafe(c => c.REDUX.HARD_LOG_ENABLE);
+const IS_HARD_LOG_ENABLED = Config.getSafe(c => c.GENERAL.REDUX.HARD_LOG_ENABLE);
 
 /**
  * Logs all actions and states after they are dispatched.
