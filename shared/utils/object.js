@@ -11,4 +11,8 @@ export class ObjectUtil {
 
       return obj;
   }
+
+  static isFunction(obj) {
+      return typeof(obj) === "function";
+  }
 }
